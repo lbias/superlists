@@ -20,7 +20,7 @@ class ItemModelTest(TestCase):
 
         second_item = Item()
         second_item.text = 'Item the second'
-        second_item.save
+        second_item.save()
 
         saved_items = Item.objects.all()
         self.assertEqual(saved_items.count(), 2)
