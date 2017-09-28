@@ -16,4 +16,5 @@ def new_list(request):
     return redirect(f'/lists/{list_.id}/')
 
 def add_item(request, list_id):
-    pass
+    list_ = List.objects.get(id=list_id)
+    return redirect(f'/lists/{list_.id}/')
