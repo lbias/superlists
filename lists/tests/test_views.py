@@ -58,7 +58,7 @@ class ListViewTest(TestCase):
             data={'item_text': 'A new item for an existing list'}
         )
 
-        self.assertRedirects(response, f'/lists/{correct_list.id}')
+        self.assertRedirects(response, f'/lists/{correct_list.id}/')
 
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
