@@ -51,7 +51,8 @@ class NewListTest(TestCase):
         response = self.client.post('/lists/new', data={'item_text': ''})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
-        expected_error = "You can't have an empty list item"
+        expected_error = "You can&#39;t have an empty list item"
+        print(response.content.decode())
         self.assertContains(response, expected_error)
 
 class NewItemTest(TestCase):
