@@ -25,7 +25,9 @@ class ListAndItemModelTest(TestCase):
         self.assertEqual(saved_items.count(), 2)
 
         first_saved_item = saved_items[0]
+        print(first_saved_item.text)
         second_saved_item = saved_items[1]
+        print(second_saved_item.text)
         self.assertEqual(first_saved_item.text, 'The first (ever) list item')
         self._baseAssertEqual(first_saved_item.list, list_)
         self.assertEqual(second_saved_item.text, 'Item the second')
@@ -55,3 +57,13 @@ class ListAndItemModelTest(TestCase):
         Item.objects.create(list=list1, text='bla')
         item = Item(list=list2, text='bla')
         item.full_clean() # should not raise
+
+    def test_list_ordering(self):
+        list1 = List.objects.create()
+        item1 = Item.objects.create(list=list1, text='i1')
+        item2 = Item.objects.create(list=list1, text='item 2')
+        item3 = Item.objects.create(list=list1, text='3')
+        self.assertEqual(
+            Item.objects.all(),
+            [item1, item2, item3]
+        )
