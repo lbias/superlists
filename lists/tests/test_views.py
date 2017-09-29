@@ -76,6 +76,12 @@ class ListViewTest(TestCase):
         expected_error = escape("You can't have an empty list item")
         self.assertContains(response, expected_error)
 
+    def test_displays_item_form(self):
+        list_ = List.objects.create()
+        response = self.client.get(f'/lists/{list_.id}/')
+        self.assertIsInstance(response.context['form'], ItemForm)
+        self.assertContains(response, 'name="text"')
+
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
         self.client.post('/lists/new', data={'text': 'A new list item'})
