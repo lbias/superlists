@@ -16,7 +16,7 @@ def new_list(request):
     try:
         item.full_clean()
     except ValidationError:
-        pass
+        return render(request, 'home.html')
     return redirect(f'/lists/{list_.id}/')
 
 def add_item(request, list_id):
